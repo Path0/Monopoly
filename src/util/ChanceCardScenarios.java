@@ -2,6 +2,8 @@ package util;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import Runner.Main;
 import cards.TitleCard;
 import logi.Player;
@@ -139,15 +141,20 @@ public class ChanceCardScenarios {
 	}
 	
 	public static void s15(Player p) {
-		ArrayList<TitleCard> cards = p.getCards();
+		ArrayList<JPanel> cards = p.getCards();
 		int totalToPay = 0;
-		for(TitleCard c : cards) {
-			if(c.getHouses() == 5) {
-				totalToPay += 1000; //for hotel
-				totalToPay += 250 * 4; // for houses
-			} else {
-				totalToPay += 250 * c.getHouses();
+		for(JPanel card : cards) {
+			TitleCard c;
+			if(card instanceof TitleCard) {
+				c = (TitleCard) card;
+				if(c.getHouses() == 5) {
+					totalToPay += 1000; //for hotel
+					totalToPay += 250 * 4; // for houses
+				} else {
+					totalToPay += 250 * c.getHouses();
+				}
 			}
+			
 		}
 		p.subtractMoney(totalToPay);
 	}

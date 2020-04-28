@@ -1,30 +1,34 @@
 package logi;
 
 import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
 import cards.TitleCard;
 public class Player {
 	private String name;
 	private int position;
 	private int money;
-	private ArrayList<TitleCard> cards;
+	private ArrayList<JPanel> cards;
 	private boolean getOutOfJailFree;
 	private boolean inJail;
 	public Player(String name) {
 		this.name = name;
 		position = 0;
 		money = 15000;
-		cards = new ArrayList<TitleCard>();
+		cards = new ArrayList<JPanel>();
 		getOutOfJailFree = false;
 		inJail = false;
 	}
 	
 	
+	public void addCard(JPanel t) {
+		cards.add(t);
+	}
 	
-	
-	
-	public TitleCard getCardByName(String name) {
-		TitleCard title = null;
-		for(TitleCard t : cards) {
+	public JPanel getCardByName(String name) {
+		JPanel title = null;
+		for(JPanel t :  cards) {
 			if(t.getName().equals(name)) {
 				title = t;
 			}
@@ -102,13 +106,13 @@ public class Player {
 	/**
 	 * @return the cards
 	 */
-	public ArrayList<TitleCard> getCards() {
+	public ArrayList<JPanel> getCards() {
 		return cards;
 	}
 	/**
 	 * @param cards the cards to set
 	 */
-	public void setCards(ArrayList<TitleCard> cards) {
+	public void setCards(ArrayList<JPanel> cards) {
 		this.cards = cards;
 	}
 	/**

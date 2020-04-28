@@ -5,8 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+import cards.TitleCard;
 import designs.Chest;
+import logi.Player;
+import ui.Hand;
+import util.Deck;
+import util.Groups;
 
 public class Frame extends JFrame {
 
@@ -42,11 +46,20 @@ public class Frame extends JFrame {
 		
 		
 		setContentPane(contentPane);
+		
+		Player p = new Player("bruh");
+		p.addCard(Deck.ATLANTIC_AVENUE);
+		p.addCard(Deck.BALTIC_AVENUE);
+		for(JPanel card : Groups.ALL_PROPERTIES) {
+			p.addCard((TitleCard) card); 
+		}
+		p.addCard(Deck.READING_RAILROAD);
+		p.addCard(Deck.WATER_WORKS);
+		
+		Hand h = new Hand(p);
+		h.setSize(450,300);
+		h.setVisible(true);
 		contentPane.setLayout(null);
-		
-		Chest c = new Chest(100);
-		c.setLocation(62, 74);
-		contentPane.add(c);
-		
+		contentPane.add(h);
 	}
 }

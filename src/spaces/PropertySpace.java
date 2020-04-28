@@ -92,7 +92,8 @@ public class PropertySpace extends JPanel {
 		
 		//actual logic begins here
 		if(owned) {
-			int rent = owner.getCardByName(name).getCurrentRent();
+			
+			int rent = ((TitleCard) owner.getCardByName(name)).getCurrentRent();
 			p.payPlayer(owner, rent);
 			if(p.getMoney() <= 0) {
 				//TODO let them know they out of money

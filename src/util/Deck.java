@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import cards.Railroad;
 import cards.TitleCard;
+import cards.UtilityCard;
 
 public class Deck {
 	final static Color BROWN = new Color(0,54,11);
@@ -250,6 +251,13 @@ public class Deck {
 	public static Railroad READING_RAILROAD = new Railroad("READING RAILROAD");
 	public static Railroad B_AND_O_RAILROAD = new Railroad("B. & O. RAILROAD");
 	public static Railroad SHORT_LINE = new Railroad("SHORT LINE");
+	
+	/*
+	 * ----UTILITIES----
+	 */
+	
+	public static UtilityCard WATER_WORKS = new UtilityCard(true);
+	public static UtilityCard ELECTRIC_COMPANY = new UtilityCard(false);
 	
 	
 	
