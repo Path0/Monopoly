@@ -12,6 +12,7 @@ import javax.swing.JTextPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Cursor;
+import javax.swing.DropMode;
 
 /**
  * Class to make each "normal" card or property.

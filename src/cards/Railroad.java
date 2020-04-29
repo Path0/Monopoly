@@ -148,7 +148,7 @@ public class Railroad extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		panel.setFocusable(false);
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Title Deed", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel.setBounds(10, 11, 180, 278);
 		add(panel);
 	}

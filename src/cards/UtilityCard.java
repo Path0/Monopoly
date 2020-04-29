@@ -22,6 +22,8 @@ public class UtilityCard extends JPanel {
 	 * Create the panel.
 	 */
 	public UtilityCard(boolean isWaterWorks) {
+		setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		setBackground(Color.WHITE);
 		super.setName(name);
 		this.isWaterWorks = isWaterWorks;
 		initComponents();
