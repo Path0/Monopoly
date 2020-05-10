@@ -1,10 +1,8 @@
 package logi;
 
 import java.util.ArrayList;
-
+import ui.PlayerUI;
 import javax.swing.JPanel;
-
-import cards.TitleCard;
 public class Player {
 	private String name;
 	private int position;
@@ -12,6 +10,10 @@ public class Player {
 	private ArrayList<JPanel> cards;
 	private boolean getOutOfJailFree;
 	private boolean inJail;
+	public int railroadsOwned;
+	public int utilitiesOwned;
+	
+	public PlayerUI ui;
 	public Player(String name) {
 		this.name = name;
 		position = 0;
@@ -19,6 +21,8 @@ public class Player {
 		cards = new ArrayList<JPanel>();
 		getOutOfJailFree = false;
 		inJail = false;
+		railroadsOwned = 0;
+		this.ui = new PlayerUI();
 	}
 	
 	
@@ -65,6 +69,31 @@ public class Player {
 	
 	public void passGo() {
 		this.addMoney(2000);
+	}
+	
+	public int getRailroadRent() {
+		switch(railroadsOwned) {
+		case 1:
+			return 250;
+		case 2:
+			return 500;
+		case 3:
+			return 1000;
+		case 4:
+			return 2000;
+		default:
+			return 0;
+		}
+	}
+	
+	public int getUtilityRent() {
+		if(utilitiesOwned == 1) {
+			return Game.rollDice() * 40;
+		} else if(utilitiesOwned == 2) {
+			return Game.rollDice() * 100;
+		} else {
+			return 0;
+		}
 	}
 	
 	/**

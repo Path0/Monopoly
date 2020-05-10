@@ -23,9 +23,9 @@ public class ChanceCard extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ChanceCard(String message, int scenario) {
+	public ChanceCard(int scenario) {
 		this.setSize(300,200);
-		message = ChanceCardScenarios.htmlFormat(message);
+		this.message = ChanceCardScenarios.htmlFormat(ChanceCardScenarios.messages[scenario-1]);
 		initComponents();
 		
 	}

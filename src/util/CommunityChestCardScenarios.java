@@ -26,6 +26,8 @@ public class CommunityChestCardScenarios {
 	public static String s15 = "Arrested for insider trading. Go to jail. Do not pass \"GO\". Do not collect $2000.";
 	public static String s16 = "Revieve a presidential pardon. GET OUT OF JAIL FREE";
 	
+	public static String[] messages = new String[] {s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16};
+	
 	public static void s1(Player p) {
 		p.addMoney(200);
 	}
@@ -36,14 +38,17 @@ public class CommunityChestCardScenarios {
 	
 	public static void s3(Player p) {
 		p.subtractMoney(500);
+		Main.game.board.addToFreeParking(500);
 	}
 	
 	public static void s4(Player p) {
 		p.subtractMoney(500);
+		Main.game.board.addToFreeParking(500);
 	}
 	
 	public static void s5(Player p) {
 		p.subtractMoney(1000);
+		Main.game.board.addToFreeParking(1000);
 	}
 	
 	public static void s6(Player p) {
@@ -64,6 +69,7 @@ public class CommunityChestCardScenarios {
 			
 		}
 		p.subtractMoney(totalToPay);
+		Main.game.board.addToFreeParking(totalToPay);
 	}
 	
 	public static void s7(Player p) {

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
 	private Player[] players;
-	private int freeParkingCash;
+	public Board board;
 	public Game(int amountOfPlayers) {
 		if(amountOfPlayers > 4) {
 			System.out.println("Sorry, you can only have 4 players!");

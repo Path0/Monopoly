@@ -28,6 +28,7 @@ public class ChanceCardScenarios {
 	public static String s14 = "Accept the position of CEO at a high-powered investment banking firm. Collect a signing bonus of $1500.";
 	public static String s15 = "Your city does a tax revaluation. For each house pay $250, for each hotel pay $1000.";
 	
+	public static String[] messages = new String[] {s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15};
 	
 	public static String htmlFormat(String scenario) {
 		return "<center><font size = 2>" + scenario + "</font></center>";
@@ -53,6 +54,7 @@ public class ChanceCardScenarios {
 	
 	public static void s5(Player p) {
 		p.subtractMoney(150);
+		Main.game.board.addToFreeParking(150);
 	}
 	
 	public static void s6(Player p) {
@@ -157,6 +159,7 @@ public class ChanceCardScenarios {
 			
 		}
 		p.subtractMoney(totalToPay);
+		Main.game.board.addToFreeParking(totalToPay);
 	}
 
 }

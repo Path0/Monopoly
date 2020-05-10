@@ -23,9 +23,9 @@ public class CommunityChestCard extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CommunityChestCard(String scenario, int scen) {
-		message = ChanceCardScenarios.htmlFormat(scenario);
-		this.scen = scen;
+	public CommunityChestCard(int scenario) {
+		message = ChanceCardScenarios.htmlFormat(CommunityChestCardScenarios.messages[scenario-1]);
+		this.scen = scenario;
 		initComponents();
 	}
 	

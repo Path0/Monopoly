@@ -10,5 +10,10 @@ public class PlayerUI extends JPanel {
 	public PlayerUI() {
 
 	}
-
+	
+	
+	public void popUp(JPanel j) {
+		//TODO pops up on screen
+	
+	}
 }
