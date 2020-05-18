@@ -8,6 +8,8 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import designs.Train;
 import logi.Player;
+import ui.PlayerUI;
+import util.PopUpCard;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -18,7 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class RailroadSpace extends JPanel {
+public class RailroadSpace extends Space {
 	private String name;
 	private JButton btnNewButton;
 	private Railroad rr;
@@ -100,7 +102,14 @@ public class RailroadSpace extends JPanel {
 		if(owned) {
 			p.payPlayer(owner, owner.getRailroadRent());
 			if(p.getMoney() <= 0) {
-				//TODO notify them
+				PlayerUI.popUp(new PopUpCard(
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + owner.getRailroadRent() + ". " + 
+						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."
+						));
+			} else {
+				PlayerUI.popUp(new PopUpCard(
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + owner.getRailroadRent() + ". "
+						));
 			}
 		} else if(p.getMoney() >= 2000) {
 			btnNewButton.setVisible(true);

@@ -3,6 +3,7 @@ package spaces;
 import javax.swing.JPanel;
 
 import logi.Player;
+import ui.PlayerUI;
 import util.PopUpCard;
 
 import javax.swing.border.LineBorder;
@@ -16,7 +17,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Cursor;
 
-public class FreeParking extends JPanel {
+public class FreeParking extends Space {
 	public int currentValue;
 	private JTextField txtFree;
 	private JTextField txtParking;
@@ -74,7 +75,7 @@ public class FreeParking extends JPanel {
 	}
 	
 	public void land(Player p) {
-		p.ui.popUp(new PopUpCard("You got $" + currentValue + " from Free Parking!"));
+		PlayerUI.popUp(new PopUpCard("You got $" + currentValue + " from Free Parking!"));
 		p.addMoney(currentValue);
 		currentValue = 0;
 	}

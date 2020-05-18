@@ -15,11 +15,13 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import java.awt.Cursor;
 import java.awt.SystemColor;
+import javax.swing.JButton;
 
 public class CommunityChestCard extends JPanel {
 	private JTextField txtCommunityChest;
 	private String message;
 	private int scen;
+	public JButton okButton;
 	/**
 	 * Create the panel.
 	 */
@@ -64,6 +66,10 @@ public class CommunityChestCard extends JPanel {
 		textPane.setBounds(10, 38, 155, 129);
 		textPane.setText(message);
 		content.add(textPane);
+		
+		okButton = new JButton("OK");
+		okButton.setBounds(170, 144, 89, 23);
+		content.add(okButton);
 	}
 	
 	public void draw(Player p) {

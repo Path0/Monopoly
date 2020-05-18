@@ -1,26 +1,26 @@
 package spaces;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import cards.TitleCard;
 import cards.UtilityCard;
 import designs.LightBulb;
 import designs.WaterTap;
 import logi.Player;
+import ui.PlayerUI;
 import util.PopUpCard;
 
-import java.awt.Color;
-import javax.swing.JTextField;
-import java.awt.SystemColor;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.Cursor;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class UtilitySpace extends JPanel {
+public class UtilitySpace extends Space {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -127,7 +127,14 @@ public class UtilitySpace extends JPanel {
 			int rent = owner.getUtilityRent();
 			p.payPlayer(owner, rent);
 			if(p.getMoney() <= 0) {
-				p.ui.popUp(new PopUpCard("Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."));
+				PlayerUI.popUp(new PopUpCard(
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". " + 
+						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."
+						));
+			} else {
+				PlayerUI.popUp(new PopUpCard(
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". "
+						));
 			}
 		} else {
 			if(p.getMoney() >= 1500) {

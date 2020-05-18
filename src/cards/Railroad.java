@@ -1,16 +1,16 @@
 package cards;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.SystemColor;
+
 import javax.swing.JPanel;
-import designs.Train;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-
-import java.awt.SystemColor;
-import java.awt.Dimension;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.border.TitledBorder;
-import java.awt.Cursor;
+
+import designs.Train;
 
 public class Railroad extends JPanel {
 	private String name;

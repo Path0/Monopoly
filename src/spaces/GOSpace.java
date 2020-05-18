@@ -15,7 +15,7 @@ import java.awt.SystemColor;
 import java.awt.Cursor;
 import javax.swing.JTextPane;
 
-public class GOSpace extends JPanel {
+public class GOSpace extends Space {
 	private JTextField txtGo;
 
 	/**

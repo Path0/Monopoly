@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 public class Car extends JPanel {
 	private double scaleModifier;
 	private int width;
-	private int height;
 	
 	private Dimension[] n1,n6,n6i;
 	private Rectangle n2,n4,n5,n7;
@@ -22,7 +21,6 @@ public class Car extends JPanel {
 	 * Create the frame.
 	 */
 	public Car(int height) {
-		this.height = height;
 		scaleModifier = (double) height / 8;
 		this.width = (int) (height * (7.0/8.0));
 		this.setSize(width + 1, height + 1);

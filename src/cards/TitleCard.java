@@ -1,18 +1,16 @@
 package cards;
 
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.SystemColor;
 
 import javax.swing.JPanel;
-import java.awt.Dimension;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.Cursor;
-import javax.swing.DropMode;
+import javax.swing.border.LineBorder;
 
 /**
  * Class to make each "normal" card or property.

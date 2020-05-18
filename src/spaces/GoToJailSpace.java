@@ -1,31 +1,22 @@
 package spaces;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
-
-import logi.Board;
-import logi.Player;
-import util.PopUpCard;
-
-import javax.swing.border.LineBorder;
-
-import Runner.Main;
-
 import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 import java.awt.Cursor;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
-public class GoToJailSpace extends JPanel {
-	private BufferedImage policeBadge;
+import logi.Board;
+import logi.Player;
+import ui.PlayerUI;
+import util.PopUpCard;
+
+public class GoToJailSpace extends Space {
 	private JTextField txtGoTo;
 	private JTextField txtJail;
 	/**
@@ -78,7 +69,7 @@ public class GoToJailSpace extends JPanel {
 	public void land(Player p) {
 		p.setInJail(true);
 		p.setPosition(Board.jailSpace);
-		p.ui.popUp(new PopUpCard(
+		PlayerUI.popUp(new PopUpCard(
 				"You're in jail! Wait 3 turns or roll doubles to get out, unless you have a \"GET OUT OF JAIL FREE\" card, which will be used on your next turn."
 				));
 	}

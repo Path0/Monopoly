@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import cards.ChanceCard;
 import designs.QuestionMark;
 import logi.Player;
+import ui.PlayerUI;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -13,7 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.Cursor;
 
-public class ChanceSpace extends JPanel {
+public class ChanceSpace extends Space {
 
 	/**
 	 * Create the panel.
@@ -53,7 +55,7 @@ public class ChanceSpace extends JPanel {
 		int amountOfScenarios = 15;
 		int scenario = (int) (Math.random() * amountOfScenarios) + 1;
 		ChanceCard card = new ChanceCard(scenario);
-		p.ui.popUp(card);
+		PlayerUI.popUp(card);
 		
 		//runs scenario in card
 		card.draw(p);

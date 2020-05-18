@@ -7,13 +7,15 @@ import javax.swing.border.LineBorder;
 import cards.CommunityChestCard;
 import designs.Chest;
 import logi.Player;
+import ui.PlayerUI;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Cursor;
 
-public class CommunityChestSpace extends JPanel {
+public class CommunityChestSpace extends Space {
 	private JTextField txtCommunityChest;
 
 	/**
@@ -54,7 +56,7 @@ public class CommunityChestSpace extends JPanel {
 		int amountOfScenarios = 16;
 		int scenario = (int) (Math.random() * amountOfScenarios) + 1;
 		CommunityChestCard card = new CommunityChestCard(scenario);
-		p.ui.popUp(card);
+		PlayerUI.popUp(card);
 		
 		//runs scenario in card
 		card.draw(p);

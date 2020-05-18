@@ -1,21 +1,20 @@
 package spaces;
 
-import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.SystemColor;
 
 import javax.swing.JPanel;
-
-import logi.Player;
-import util.PopUpCard;
-import javax.swing.JSeparator;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.Cursor;
+import javax.swing.border.LineBorder;
 
-public class JailSpace extends JPanel {
+import logi.Player;
+import ui.PlayerUI;
+import util.PopUpCard;
+
+public class JailSpace extends Space {
 	private JTextField txtIn;
 	private JTextField txtJail;
 	private JTextField txtJustVisiting;
@@ -102,7 +101,7 @@ public class JailSpace extends JPanel {
 	}
 	
 	public void land(Player p) {
-		p.ui.popUp(new PopUpCard(
+		PlayerUI.popUp(new PopUpCard(
 				"Phew. Glad you're not in there!"
 				));
 	}

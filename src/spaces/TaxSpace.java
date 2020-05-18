@@ -12,7 +12,7 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class TaxSpace extends JPanel {
+public class TaxSpace extends Space {
 	private JTextField txtIncome;
 	private JTextField txtTax;
 	private JTextField txtPay;

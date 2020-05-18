@@ -1,28 +1,29 @@
 package ui;
 
-import logi.Player;
-
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import cards.TitleCard;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.SystemColor;
+import logi.Player;
 
 public class Hand extends JPanel {
 	private JPanel currentCard;
-	private ArrayList<JPanel> allCards;
-	private Player p;
+	public ArrayList<JPanel> allCards;
+	private Player player;
 	private int currentCardIndex;
 	
+	public Hand() {
+		
+	}
 	public Hand(Player p) {
-		this.p = p;
+		this.player = p;
 		allCards = p.getCards();
 		currentCardIndex = 0;
 		setSize(450,300);
@@ -64,16 +65,14 @@ public class Hand extends JPanel {
 	}
 	
 	public void refresh() {
-		allCards = p.getCards();
+		allCards = player.getCards();
 	}
 	
 	public void nextCard() {
 		currentCardIndex++;
-		
 		if(currentCardIndex == allCards.size()) {
 			currentCardIndex = 0; //deals with overflow, just loops around the cardstack.
 		}
-		System.out.println(currentCardIndex);
 		JPanel newCard = allCards.get(currentCardIndex);
 		changeCard(newCard);
 	}
@@ -83,7 +82,6 @@ public class Hand extends JPanel {
 		if(currentCardIndex < 0) {
 			currentCardIndex = allCards.size() - 1; //deals with overflow, just loops around the cardstack.
 		}
-		System.out.println(currentCardIndex);
 		JPanel newCard = allCards.get(currentCardIndex);
 		changeCard(newCard);
 	}

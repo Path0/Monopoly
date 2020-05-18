@@ -1,25 +1,23 @@
 package spaces;
 
 import java.awt.Color;
-import logi.Player;
-import util.Groups;
-import util.PopUpCard;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
-import cards.TitleCard;
-
+import java.awt.Cursor;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import java.awt.Cursor;
 
-public class PropertySpace extends JPanel {
+import cards.TitleCard;
+import logi.Player;
+import ui.PlayerUI;
+import util.PopUpCard;
+
+public class PropertySpace extends Space {
 	public int cost;
 	public Color color;
 	public String name;
@@ -62,7 +60,7 @@ public class PropertySpace extends JPanel {
 		name_1.setBorder(null);
 		name_1.setBackground(SystemColor.menu);
 		name_1.setHorizontalAlignment(SwingConstants.CENTER);
-		name_1.setBounds(45, 86, 113, 23);
+		name_1.setBounds(10, 86, 183, 23);
 		content.add(name_1);
 		name_1.setText(name);
 		name_1.setColumns(10);
@@ -100,7 +98,8 @@ public class PropertySpace extends JPanel {
 				p.subtractMoney(cost);
 				owned = true;
 				owner = p;
-				
+				Buy.setVisible(false);
+				PlayerUI.update(p);
 				
 			}
 			
@@ -111,9 +110,18 @@ public class PropertySpace extends JPanel {
 			
 			int rent = ((TitleCard) owner.getCardByName(name)).getCurrentRent();
 			p.payPlayer(owner, rent);
+			
 			if(p.getMoney() <= 0) {
-				p.ui.popUp(new PopUpCard("Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."));
+				PlayerUI.popUp(new PopUpCard(
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". " + 
+						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."
+						));
+			} else {
+				PlayerUI.popUp(new PopUpCard(
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". "
+						));
 			}
+			PlayerUI.update(p);
 		} else {
 			if(p.getMoney() >= cost) {
 				Buy.setVisible(true);

@@ -3,7 +3,7 @@ package logi;
 import java.util.Scanner;
 
 public class Game {
-	private Player[] players;
+	public Player[] players;
 	public Board board;
 	public Game(int amountOfPlayers) {
 		if(amountOfPlayers > 4) {

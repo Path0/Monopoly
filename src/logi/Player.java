@@ -1,7 +1,6 @@
 package logi;
 
 import java.util.ArrayList;
-import ui.PlayerUI;
 import javax.swing.JPanel;
 public class Player {
 	private String name;
@@ -13,7 +12,6 @@ public class Player {
 	public int railroadsOwned;
 	public int utilitiesOwned;
 	
-	public PlayerUI ui;
 	public Player(String name) {
 		this.name = name;
 		position = 0;
@@ -22,7 +20,6 @@ public class Player {
 		getOutOfJailFree = false;
 		inJail = false;
 		railroadsOwned = 0;
-		this.ui = new PlayerUI();
 	}
 	
 	
