@@ -3,8 +3,11 @@ package util;
 import java.util.ArrayList;
 
 import Runner.Main;
+import cards.Card;
 import cards.TitleCard;
+import logi.Board;
 import logi.Player;
+import ui.PlayerUI;
 
 public class CommunityChestCardScenarios {
 	public static String s1 = "Sell your lifetime, 50-yard line, season tickets on e-bay. Collect $200";
@@ -24,63 +27,87 @@ public class CommunityChestCardScenarios {
 	public static String s15 = "Arrested for insider trading. Go to jail. Do not pass \"GO\". Do not collect $2000.";
 	public static String s16 = "Revieve a presidential pardon. GET OUT OF JAIL FREE";
 	
+	public static String[] messages = new String[] {s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16};
+	
 	public static void s1(Player p) {
 		p.addMoney(200);
+		PlayerUI.update(p);
 	}
 	
 	public static void s2(Player p) {
 		p.addMoney(1000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s3(Player p) {
 		p.subtractMoney(500);
+		Board.addToFreeParking(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s4(Player p) {
 		p.subtractMoney(500);
+		Board.addToFreeParking(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s5(Player p) {
 		p.subtractMoney(1000);
+		Board.addToFreeParking(1000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s6(Player p) {
-		ArrayList<TitleCard> cards = p.getCards();
+		ArrayList<Card> cards = p.getCards();
 		int totalToPay = 0;
-		for(TitleCard c : cards) {
-			if(c.getHouses() == 5) {
-				totalToPay += 1150; //for hotel
-				totalToPay += 400 * 4; // for houses
-			} else {
-				totalToPay += 400 * c.getHouses();
+		for(Card card : cards) {
+			TitleCard c;
+			if(card instanceof TitleCard) {
+				c = (TitleCard) card;
+				
+				if(c.getHouses() == 5) {
+					totalToPay += 1150; //for hotel
+					totalToPay += 400 * 4; // for houses
+				} else {
+					totalToPay += 400 * c.getHouses();
+				}
 			}
+			
 		}
 		p.subtractMoney(totalToPay);
+		Board.addToFreeParking(totalToPay);
+		PlayerUI.update(p);
 	}
 	
 	public static void s7(Player p) {
 		p.setPosition(1);
 		p.passGo();
+		PlayerUI.update(p);
 	}
 	
 	public static void s8(Player p) {
 		p.addMoney(250);
+		PlayerUI.update(p);
 	}
 	
 	public static void s9(Player p) {
 		p.addMoney(1000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s10(Player p) {
 		p.addMoney(100);
+		PlayerUI.update(p);
 	}
 	
 	public static void s11(Player p) {
 		p.addMoney(100);
+		PlayerUI.update(p);
 	}
 	
 	public static void s12(Player p) {
 		p.addMoney(2000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s13(Player p) {
@@ -90,15 +117,24 @@ public class CommunityChestCardScenarios {
 			a.subtractMoney(100);
 		}
 		p.addMoney(amount);
+		PlayerUI.update(p);
 	}
 	
 	public static void s14(Player p) {
 		p.addMoney(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s15(Player p) {
 		p.setPosition(11);
 		p.setInJail(true);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s16(Player p) {

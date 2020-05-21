@@ -15,17 +15,19 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Cursor;
 import javax.swing.JTextPane;
+import javax.swing.JButton;
 
 public class ChanceCard extends JPanel {
 	
 	public int scenario;
 	public String message;
+	public JButton okButton;
 	/**
 	 * Create the panel.
 	 */
-	public ChanceCard(String message, int scenario) {
+	public ChanceCard(int scenario) {
 		this.setSize(300,200);
-		message = ChanceCardScenarios.htmlFormat(message);
+		this.message = ChanceCardScenarios.htmlFormat(ChanceCardScenarios.messages[scenario-1]);
 		initComponents();
 		
 	}
@@ -67,6 +69,10 @@ public class ChanceCard extends JPanel {
 		textPane.setBounds(10, 38, 155, 129);
 		textPane.setText(message);
 		panel.add(textPane);
+		
+		okButton = new JButton("OK");
+		okButton.setBounds(175, 144, 89, 23);
+		panel.add(okButton);
 		
 	}
 	

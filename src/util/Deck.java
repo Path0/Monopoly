@@ -4,16 +4,17 @@ import java.awt.Color;
 
 import cards.Railroad;
 import cards.TitleCard;
+import cards.UtilityCard;
 
 public class Deck {
-	final static Color BROWN = new Color(0,54,11);
-	final static Color LIGHT_BLUE = new Color(0,215,252);
-	final static Color PINK = new Color(255,84,130);
-	final static Color ORANGE = new Color(255,123,0);
-	final static Color RED = new Color(179,25,25);
-	final static Color YELLOW = new Color(238,255,0);
-	final static Color GREEN = new Color(19,176,38);
-	final static Color BLUE = new Color(46,49,148);
+	public final static Color BROWN = new Color(0,54,11);
+	public final static Color LIGHT_BLUE = new Color(0,215,252);
+	public final static Color PINK = new Color(255,84,130);
+	public final static Color ORANGE = new Color(255,123,0);
+	public final static Color RED = new Color(179,25,25);
+	public final static Color YELLOW = new Color(238,255,0);
+	public final static Color GREEN = new Color(19,176,38);
+	public final static Color BLUE = new Color(46,49,148);
 	/*
 	 * ----BROWN CARDS----
 	 */
@@ -250,6 +251,13 @@ public class Deck {
 	public static Railroad READING_RAILROAD = new Railroad("READING RAILROAD");
 	public static Railroad B_AND_O_RAILROAD = new Railroad("B. & O. RAILROAD");
 	public static Railroad SHORT_LINE = new Railroad("SHORT LINE");
+	
+	/*
+	 * ----UTILITIES----
+	 */
+	
+	public static UtilityCard WATER_WORKS = new UtilityCard(true);
+	public static UtilityCard ELECTRIC_COMPANY = new UtilityCard(false);
 	
 	
 	

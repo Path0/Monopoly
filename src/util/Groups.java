@@ -1,6 +1,10 @@
 package util;
 
+import javax.swing.JFrame;
+
+import cards.Railroad;
 import cards.TitleCard;
+import cards.UtilityCard;
 
 public class Groups {
 	public static TitleCard[] BROWN_CARDS = new TitleCard[] {
@@ -72,6 +76,25 @@ public class Groups {
 			Deck.PENNSYLVANIA_AVENUE,
 			Deck.PARK_PLACE,
 			Deck.BOARDWALK
+			
+	};
+	
+	
+	public static Railroad[] RAILROADS = new Railroad[] {
+			Deck.READING_RAILROAD,
+			Deck.PENNSYLVANIA_RAILROAD,
+			Deck.B_AND_O_RAILROAD,
+			Deck.SHORT_LINE
+	};
+	
+	public static UtilityCard[] UTILITIES = new UtilityCard[] {
+			Deck.ELECTRIC_COMPANY,
+			Deck.WATER_WORKS
+	};
+	
+	
+	public static JFrame[] ALL_CARDS = new JFrame[] {
+			
 			
 	};
 	

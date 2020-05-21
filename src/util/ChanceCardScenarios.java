@@ -3,8 +3,11 @@ package util;
 import java.util.ArrayList;
 
 import Runner.Main;
+import cards.Card;
 import cards.TitleCard;
+import logi.Board;
 import logi.Player;
+import ui.PlayerUI;
 
 public class ChanceCardScenarios {
 
@@ -26,6 +29,7 @@ public class ChanceCardScenarios {
 	public static String s14 = "Accept the position of CEO at a high-powered investment banking firm. Collect a signing bonus of $1500.";
 	public static String s15 = "Your city does a tax revaluation. For each house pay $250, for each hotel pay $1000.";
 	
+	public static String[] messages = new String[] {s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15};
 	
 	public static String htmlFormat(String scenario) {
 		return "<center><font size = 2>" + scenario + "</font></center>";
@@ -36,21 +40,32 @@ public class ChanceCardScenarios {
 	}
 	
 	public static void s2(Player p) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		p.move(-3);
+		PlayerUI.update(p);
 	}
 	
 	public static void s3(Player p) {
-		for(Player x : Main.game.getPlayers()) {
+		for(Player x : Main.game.players) {
 			p.payPlayer(x, 500);
 		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s4(Player p) {
 		p.addMoney(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s5(Player p) {
 		p.subtractMoney(150);
+		Board.addToFreeParking(150);
+		PlayerUI.update(p);
 	}
 	
 	public static void s6(Player p) {
@@ -59,6 +74,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s7(Player p) {
@@ -67,6 +89,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s8(Player p) {
@@ -75,6 +104,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s9(Player p) {
@@ -83,6 +119,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s10(Player p) {
@@ -105,6 +148,13 @@ public class ChanceCardScenarios {
 		} else if(playerPos < pos1) {
 			p.setPosition(pos1);
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s11(Player p) {
@@ -122,34 +172,51 @@ public class ChanceCardScenarios {
 		} else if(playerPos < pos1) {
 			p.setPosition(pos1);
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s12(Player p) {
 		p.setInJail(true);
 		p.setPosition(11);
+		PlayerUI.update(p);
 	}
 	
 	public static void s13(Player p) {
 		p.passGo();
 		p.setPosition(1);
+		PlayerUI.update(p);
 	}
 	
 	public static void s14(Player p) {
 		p.addMoney(1500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s15(Player p) {
-		ArrayList<TitleCard> cards = p.getCards();
+		ArrayList<Card> cards = p.getCards();
 		int totalToPay = 0;
-		for(TitleCard c : cards) {
-			if(c.getHouses() == 5) {
-				totalToPay += 1000; //for hotel
-				totalToPay += 250 * 4; // for houses
-			} else {
-				totalToPay += 250 * c.getHouses();
+		for(Card card : cards) {
+			TitleCard c;
+			if(card instanceof TitleCard) {
+				c = (TitleCard) card;
+				if(c.getHouses() == 5) {
+					totalToPay += 1000; //for hotel
+					totalToPay += 250 * 4; // for houses
+				} else {
+					totalToPay += 250 * c.getHouses();
+				}
 			}
+			
 		}
 		p.subtractMoney(totalToPay);
+		Board.addToFreeParking(totalToPay);
+		PlayerUI.update(p);
 	}
 
 }

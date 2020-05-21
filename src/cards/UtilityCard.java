@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextPane;
 
-public class UtilityCard extends JPanel {
+public class UtilityCard extends Card {
 	private String name;
 	private boolean otherOwned;
 	private boolean isWaterWorks;
@@ -22,6 +22,9 @@ public class UtilityCard extends JPanel {
 	 * Create the panel.
 	 */
 	public UtilityCard(boolean isWaterWorks) {
+		setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		setBackground(Color.WHITE);
+		super.setName(name);
 		this.isWaterWorks = isWaterWorks;
 		initComponents();
 	}
@@ -107,5 +110,16 @@ public class UtilityCard extends JPanel {
 		} else {
 			return diceRoll * 40;
 		}
+	}
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+	public int getMortgageVal() {
+		return 750;
 	}
 }

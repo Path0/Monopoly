@@ -1,30 +1,51 @@
 package logi;
 
 import java.util.ArrayList;
-import cards.TitleCard;
+
+import javax.swing.JPanel;
+
+import cards.Card;
+import spaces.PropertySpace;
+import spaces.RailroadSpace;
+import spaces.UtilitySpace;
 public class Player {
 	private String name;
 	private int position;
 	private int money;
-	private ArrayList<TitleCard> cards;
+	private ArrayList<Card> cards;
 	private boolean getOutOfJailFree;
 	private boolean inJail;
+	public int railroadsOwned;
+	public int utilitiesOwned;
+	
 	public Player(String name) {
 		this.name = name;
-		position = 0;
+		position = 1;
 		money = 15000;
-		cards = new ArrayList<TitleCard>();
+		cards = new ArrayList<Card>();
 		getOutOfJailFree = false;
 		inJail = false;
+		railroadsOwned = 0;
 	}
 	
+	public Player(Player p) {
+		this.name = p.name;
+		this.position = p.position;
+		this.money = p.money;
+		this.cards = p.cards;
+		this.getOutOfJailFree = p.getOutOfJailFree;
+		this.inJail = p.inJail;
+		this.railroadsOwned = p.railroadsOwned;
+		this.utilitiesOwned = p.utilitiesOwned;
+	}
 	
+	public void addCard(Card t) {
+		cards.add(t);
+	}
 	
-	
-	
-	public TitleCard getCardByName(String name) {
-		TitleCard title = null;
-		for(TitleCard t : cards) {
+	public JPanel getCardByName(String name) {
+		JPanel title = null;
+		for(JPanel t :  cards) {
 			if(t.getName().equals(name)) {
 				title = t;
 			}
@@ -61,6 +82,48 @@ public class Player {
 	
 	public void passGo() {
 		this.addMoney(2000);
+	}
+	
+	public int getRailroadRent() {
+		switch(railroadsOwned) {
+		case 1:
+			return 250;
+		case 2:
+			return 500;
+		case 3:
+			return 1000;
+		case 4:
+			return 2000;
+		default:
+			return 0;
+		}
+	}
+	
+	public int getUtilityRent() {
+		if(utilitiesOwned == 1) {
+			return Game.rollDice() * 40;
+		} else if(utilitiesOwned == 2) {
+			return Game.rollDice() * 100;
+		} else {
+			return 0;
+		}
+	}
+	
+	public void removeCard(Card j) {
+		cards.remove(j);
+		int position = Card.findPosition(j.getName());
+		if(Board.board[position] instanceof PropertySpace) {
+			PropertySpace p = (PropertySpace) Board.board[position];
+			p.owned = false;
+		}
+		if(Board.board[position] instanceof RailroadSpace) {
+			RailroadSpace p = (RailroadSpace) Board.board[position];
+			p.owned = false;
+		}
+		if(Board.board[position] instanceof UtilitySpace) {
+			UtilitySpace p = (UtilitySpace) Board.board[position];
+			p.owned = false;
+		}
 	}
 	
 	/**
@@ -102,13 +165,13 @@ public class Player {
 	/**
 	 * @return the cards
 	 */
-	public ArrayList<TitleCard> getCards() {
+	public ArrayList<Card> getCards() {
 		return cards;
 	}
 	/**
 	 * @param cards the cards to set
 	 */
-	public void setCards(ArrayList<TitleCard> cards) {
+	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
 	/**

@@ -1,18 +1,18 @@
 package cards;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.SystemColor;
+
 import javax.swing.JPanel;
-import designs.Train;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-
-import java.awt.SystemColor;
-import java.awt.Dimension;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.border.TitledBorder;
-import java.awt.Cursor;
 
-public class Railroad extends JPanel {
+import designs.Train;
+
+public class Railroad extends Card {
 	private String name;
 	private int rent;
 	
@@ -22,6 +22,9 @@ public class Railroad extends JPanel {
 	 * @param name the Card's name. This is printed on the front of the card.
 	 */
 	public Railroad(String name) {
+		setBackground(Color.WHITE);
+		setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		super.setName(name);
 		this.name = name;
 		this.rent = 250;
 		this.setPreferredSize(new Dimension(200,300));
@@ -80,7 +83,7 @@ public class Railroad extends JPanel {
 		line1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		line1.setAutoscrolls(false);
 		line1.setFocusable(false);
-		line1.setText(" RENT\t\t$250");
+		line1.setText(" RENT\t                 $250");
 		line1.setBackground(SystemColor.menu);
 		line1.setBounds(10, 153, 180, 20);
 		add(line1);
@@ -92,7 +95,7 @@ public class Railroad extends JPanel {
 		JTextField line2 = new JTextField();
 		line2.setFocusable(false);
 		line2.setAutoscrolls(false);
-		line2.setText("If 2 railroads are owned\t$500");
+		line2.setText("If 2 railroads are owned  $500");
 		line2.setEditable(false);
 		line2.setBackground(SystemColor.menu);
 		line2.setBounds(10, 184, 180, 20);
@@ -106,7 +109,7 @@ public class Railroad extends JPanel {
 		line3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		line3.setFocusable(false);
 		line3.setAutoscrolls(false);
-		line3.setText("If 3 railroads are owned\t$1000");
+		line3.setText("If 3 railroads are owned  $1000");
 		line3.setEditable(false);
 		line3.setColumns(10);
 		line3.setBackground(SystemColor.menu);
@@ -120,7 +123,7 @@ public class Railroad extends JPanel {
 		line4.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		line4.setFocusable(false);
 		line4.setAutoscrolls(false);
-		line4.setText("If 4 railroads are owned\t$2000");
+		line4.setText("If 4 railroads are owned  $2000");
 		line4.setEditable(false);
 		line4.setColumns(10);
 		line4.setBackground(SystemColor.menu);
@@ -145,7 +148,7 @@ public class Railroad extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		panel.setFocusable(false);
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Title Deed", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel.setBounds(10, 11, 180, 278);
 		add(panel);
 	}
@@ -157,6 +160,10 @@ public class Railroad extends JPanel {
 	
 	public void setCardName(String name) {
 		this.name = name;
+	}
+
+	public int getMortgageVal() {
+		return 1000;
 	}
 	
 	

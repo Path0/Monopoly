@@ -1,24 +1,23 @@
 package cards;
 
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.SystemColor;
 
 import javax.swing.JPanel;
-import java.awt.Dimension;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.Cursor;
+import javax.swing.border.LineBorder;
 
 /**
  * Class to make each "normal" card or property.
  * @author bruh
  *
  */
-public class TitleCard extends JPanel {
+public class TitleCard extends Card {
 	private String name;
 	private int houses;
 	private int[] rentList;
@@ -42,6 +41,8 @@ public class TitleCard extends JPanel {
 	 * @param color The color group of this Property.
 	 */
 	public TitleCard(String name, int[] rents, int mortgageVal, int houseCost, int hotelCost, Color color) {
+		setBackground(Color.WHITE);
+		setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		this.name = name;
 		this.rentList = rents;
 		this.houses = 0;
@@ -50,7 +51,7 @@ public class TitleCard extends JPanel {
 		this.color = color;
 		this.currentRent = rents[0];
 		this.hotelCost = hotelCost;
-		
+		super.setName(name);
 		
 		this.setPreferredSize(new Dimension(200, 300));
 		this.setSize(200,300);
@@ -62,6 +63,24 @@ public class TitleCard extends JPanel {
 		initComponents();
 	}
 	
+	public TitleCard() {
+		setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		setBackground(Color.WHITE);
+		super.setName("");
+		name = "";
+		rentList = new int[] {0,0,0,0,0,0};
+		houses = 0;
+		mortgageVal = 0;
+		houseCost = 0;
+		color = Color.black;
+		currentRent = 0;
+		hotelCost = 0;
+		this.setSize(200,300);
+		this.setVisible(true);
+		setLayout(null);
+		initComponents();
+	}
+
 	/**
 	 * Method to add one house to this card. More useful to game logic than GUI.
 	 */
@@ -90,7 +109,7 @@ public class TitleCard extends JPanel {
 		
 		JPanel titleBar = new JPanel();
 		titleBar.setBackground(color);
-		titleBar.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Title Deed", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		titleBar.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		titleBar.setBounds(10, 11, 160, 65);
 		content.add(titleBar);
 		titleBar.setLayout(null);
@@ -101,7 +120,7 @@ public class TitleCard extends JPanel {
 		titleName.setEditable(false);
 		titleName.setAutoscrolls(false);
 		titleName.setBackground(color);
-		titleName.setBounds(10, 23, 140, 31);
+		titleName.setBounds(10, 11, 140, 43);
 		titleName.setContentType("text/html");
 		titleName.setText("<html><font size = 4 face = \"verdana\"><center><strong>" + name + "</strong></center></font></html>");
 		
@@ -126,13 +145,13 @@ public class TitleCard extends JPanel {
 		houses_1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		houses_1.setBackground(SystemColor.menu);
 		
-		houses_1.setText("With 1 House\t                 $" + rentList[1]
-						+ "\nWith 2 Houses\t                 $" + rentList[2]
-						+ "\nWith 3 Houses\t                 $" + rentList[3]
-						+ "\nWith 4 Houses\t                 $" + rentList[4]
-						+ "\nWith HOTEL\t                 $" + rentList[5]);
+		houses_1.setText("With 1 House\t               $" + rentList[1]
+						+ "\nWith 2 Houses\t               $" + rentList[2]
+						+ "\nWith 3 Houses\t               $" + rentList[3]
+						+ "\nWith 4 Houses\t               $" + rentList[4]
+						+ "\nWith HOTEL\t               $" + rentList[5]);
 		houses_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		houses_1.setBounds(10, 118, 160, 65);
+		houses_1.setBounds(10, 118, 160, 81);
 		content.add(houses_1);
 		
 		JTextField MortgageValue = new JTextField();
@@ -144,7 +163,7 @@ public class TitleCard extends JPanel {
 		MortgageValue.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		MortgageValue.setHorizontalAlignment(SwingConstants.CENTER);
 		MortgageValue.setBackground(SystemColor.menu);
-		MortgageValue.setBounds(31, 182, 118, 20);
+		MortgageValue.setBounds(30, 205, 118, 20);
 		content.add(MortgageValue);
 		MortgageValue.setColumns(10);
 		
@@ -157,7 +176,7 @@ public class TitleCard extends JPanel {
 		HouseCost.setText("Houses cost $" + houseCost);
 		HouseCost.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		HouseCost.setBackground(SystemColor.menu);
-		HouseCost.setBounds(42, 213, 96, 20);
+		HouseCost.setBounds(42, 225, 96, 20);
 		content.add(HouseCost);
 		HouseCost.setColumns(10);
 		
