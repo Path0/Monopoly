@@ -55,11 +55,16 @@ public class CommunityChestSpace extends Space {
 	public void land(Player p) {
 		int amountOfScenarios = 16;
 		int scenario = (int) (Math.random() * amountOfScenarios) + 1;
+		System.out.println(scenario);
 		CommunityChestCard card = new CommunityChestCard(scenario);
 		PlayerUI.popUp(card);
 		
 		//runs scenario in card
 		card.draw(p);
+	}
+	
+	public Space clone() {
+		return new CommunityChestSpace();
 	}
 
 }

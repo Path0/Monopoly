@@ -77,36 +77,52 @@ public class CommunityChestCard extends JPanel {
 		
 		case 1:
 			CommunityChestCardScenarios.s1(p);
+			break;
 		case 2:
 			CommunityChestCardScenarios.s2(p);
+			break;
 		case 3:
 			CommunityChestCardScenarios.s3(p);
+			break;
 		case 4:
 			CommunityChestCardScenarios.s4(p);
+			break;
 		case 5:
 			CommunityChestCardScenarios.s5(p);
+			break;
 		case 6:
 			CommunityChestCardScenarios.s6(p);
+			break;
 		case 7:
 			CommunityChestCardScenarios.s7(p);
+			break;
 		case 8:
 			CommunityChestCardScenarios.s8(p);
+			break;
 		case 9:
 			CommunityChestCardScenarios.s9(p);
+			break;
 		case 10:
 			CommunityChestCardScenarios.s10(p);
+			break;
 		case 11:
 			CommunityChestCardScenarios.s11(p);
+			break;
 		case 12:
 			CommunityChestCardScenarios.s12(p);
+			break;
 		case 13:
 			CommunityChestCardScenarios.s13(p);
+			break;
 		case 14:
 			CommunityChestCardScenarios.s14(p);
+			break;
 		case 15:
 			CommunityChestCardScenarios.s15(p);
+			break;
 		case 16:
 			CommunityChestCardScenarios.s16(p);
+			break;
 		default:
 			break;
 		

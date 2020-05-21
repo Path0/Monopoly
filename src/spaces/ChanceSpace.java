@@ -60,4 +60,8 @@ public class ChanceSpace extends Space {
 		//runs scenario in card
 		card.draw(p);
 	}
+	
+	public Space clone() {
+		return new ChanceSpace();
+	}
 }

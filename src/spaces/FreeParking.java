@@ -79,4 +79,8 @@ public class FreeParking extends Space {
 		p.addMoney(currentValue);
 		currentValue = 0;
 	}
+	
+	public Space clone() {
+		return new FreeParking();
+	}
 }

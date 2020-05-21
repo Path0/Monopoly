@@ -24,7 +24,7 @@ public class PropertySpace extends Space {
 	public TitleCard property;
 	public boolean owned;
 	public Player owner;
-	private JButton Buy;
+	public JButton Buy;
 	/**
 	 * Create the panel.
 	 */
@@ -87,7 +87,9 @@ public class PropertySpace extends Space {
 	
 	
 	
-	
+	public void hideButton() {
+		Buy.setVisible(false);
+	}
 	public void land(Player p) {
 		
 		Buy.addActionListener(new ActionListener() {
@@ -114,11 +116,13 @@ public class PropertySpace extends Space {
 			if(p.getMoney() <= 0) {
 				PlayerUI.popUp(new PopUpCard(
 						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". " + 
-						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."
+						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck." + 
+						"You landed on " + name
 						));
 			} else {
 				PlayerUI.popUp(new PopUpCard(
-						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". "
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". " + 
+								"You landed on " + this.name
 						));
 			}
 			PlayerUI.update(p);
@@ -130,6 +134,9 @@ public class PropertySpace extends Space {
 	}
 	
 	
+	public Space clone() {
+		return new PropertySpace(property, cost);
+	}
 	
 	
 	

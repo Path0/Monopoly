@@ -1,12 +1,18 @@
 package logi;
 
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
+import cards.Card;
+import spaces.PropertySpace;
+import spaces.RailroadSpace;
+import spaces.UtilitySpace;
 public class Player {
 	private String name;
 	private int position;
 	private int money;
-	private ArrayList<JPanel> cards;
+	private ArrayList<Card> cards;
 	private boolean getOutOfJailFree;
 	private boolean inJail;
 	public int railroadsOwned;
@@ -14,16 +20,26 @@ public class Player {
 	
 	public Player(String name) {
 		this.name = name;
-		position = 0;
+		position = 1;
 		money = 15000;
-		cards = new ArrayList<JPanel>();
+		cards = new ArrayList<Card>();
 		getOutOfJailFree = false;
 		inJail = false;
 		railroadsOwned = 0;
 	}
 	
+	public Player(Player p) {
+		this.name = p.name;
+		this.position = p.position;
+		this.money = p.money;
+		this.cards = p.cards;
+		this.getOutOfJailFree = p.getOutOfJailFree;
+		this.inJail = p.inJail;
+		this.railroadsOwned = p.railroadsOwned;
+		this.utilitiesOwned = p.utilitiesOwned;
+	}
 	
-	public void addCard(JPanel t) {
+	public void addCard(Card t) {
 		cards.add(t);
 	}
 	
@@ -93,6 +109,23 @@ public class Player {
 		}
 	}
 	
+	public void removeCard(Card j) {
+		cards.remove(j);
+		int position = Card.findPosition(j.getName());
+		if(Board.board[position] instanceof PropertySpace) {
+			PropertySpace p = (PropertySpace) Board.board[position];
+			p.owned = false;
+		}
+		if(Board.board[position] instanceof RailroadSpace) {
+			RailroadSpace p = (RailroadSpace) Board.board[position];
+			p.owned = false;
+		}
+		if(Board.board[position] instanceof UtilitySpace) {
+			UtilitySpace p = (UtilitySpace) Board.board[position];
+			p.owned = false;
+		}
+	}
+	
 	/**
 	 * @return the name
 	 */
@@ -132,13 +165,13 @@ public class Player {
 	/**
 	 * @return the cards
 	 */
-	public ArrayList<JPanel> getCards() {
+	public ArrayList<Card> getCards() {
 		return cards;
 	}
 	/**
 	 * @param cards the cards to set
 	 */
-	public void setCards(ArrayList<JPanel> cards) {
+	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
 	/**

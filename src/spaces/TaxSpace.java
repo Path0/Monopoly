@@ -1,27 +1,28 @@
 package spaces;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.SystemColor;
+
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import Runner.Main;
+import logi.Board;
 import logi.Player;
-
-import java.awt.Color;
-import javax.swing.JTextField;
-import java.awt.SystemColor;
-import java.awt.Font;
-import javax.swing.SwingConstants;
 
 public class TaxSpace extends Space {
 	private JTextField txtIncome;
 	private JTextField txtTax;
 	private JTextField txtPay;
 	private int amount;
+	private String title;
 	/**
 	 * Create the panel.
 	 */
 	public TaxSpace(String name, int amtToPay) {
-		String title = name;
+		title = name;
 		amount = amtToPay;
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		this.setSize(213,300);
@@ -78,7 +79,11 @@ public class TaxSpace extends Space {
 	
 	public void land(Player p) {
 		p.subtractMoney(amount);
-		Main.game.board.addToFreeParking(amount);
+		Board.addToFreeParking(amount);
+	}
+	
+	public Space clone() {
+		return new TaxSpace(title, amount);
 	}
 
 }

@@ -2,11 +2,12 @@ package util;
 
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 import Runner.Main;
+import cards.Card;
 import cards.TitleCard;
+import logi.Board;
 import logi.Player;
+import ui.PlayerUI;
 
 public class CommunityChestCardScenarios {
 	public static String s1 = "Sell your lifetime, 50-yard line, season tickets on e-bay. Collect $200";
@@ -30,31 +31,36 @@ public class CommunityChestCardScenarios {
 	
 	public static void s1(Player p) {
 		p.addMoney(200);
+		PlayerUI.update(p);
 	}
 	
 	public static void s2(Player p) {
 		p.addMoney(1000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s3(Player p) {
 		p.subtractMoney(500);
-		Main.game.board.addToFreeParking(500);
+		Board.addToFreeParking(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s4(Player p) {
 		p.subtractMoney(500);
-		Main.game.board.addToFreeParking(500);
+		Board.addToFreeParking(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s5(Player p) {
 		p.subtractMoney(1000);
-		Main.game.board.addToFreeParking(1000);
+		Board.addToFreeParking(1000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s6(Player p) {
-		ArrayList<JPanel> cards = p.getCards();
+		ArrayList<Card> cards = p.getCards();
 		int totalToPay = 0;
-		for(JPanel card : cards) {
+		for(Card card : cards) {
 			TitleCard c;
 			if(card instanceof TitleCard) {
 				c = (TitleCard) card;
@@ -69,32 +75,39 @@ public class CommunityChestCardScenarios {
 			
 		}
 		p.subtractMoney(totalToPay);
-		Main.game.board.addToFreeParking(totalToPay);
+		Board.addToFreeParking(totalToPay);
+		PlayerUI.update(p);
 	}
 	
 	public static void s7(Player p) {
 		p.setPosition(1);
 		p.passGo();
+		PlayerUI.update(p);
 	}
 	
 	public static void s8(Player p) {
 		p.addMoney(250);
+		PlayerUI.update(p);
 	}
 	
 	public static void s9(Player p) {
 		p.addMoney(1000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s10(Player p) {
 		p.addMoney(100);
+		PlayerUI.update(p);
 	}
 	
 	public static void s11(Player p) {
 		p.addMoney(100);
+		PlayerUI.update(p);
 	}
 	
 	public static void s12(Player p) {
 		p.addMoney(2000);
+		PlayerUI.update(p);
 	}
 	
 	public static void s13(Player p) {
@@ -104,15 +117,24 @@ public class CommunityChestCardScenarios {
 			a.subtractMoney(100);
 		}
 		p.addMoney(amount);
+		PlayerUI.update(p);
 	}
 	
 	public static void s14(Player p) {
 		p.addMoney(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s15(Player p) {
 		p.setPosition(11);
 		p.setInJail(true);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s16(Player p) {

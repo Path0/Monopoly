@@ -21,10 +21,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class RailroadSpace extends Space {
-	private String name;
+	public String name;
 	private JButton btnNewButton;
 	private Railroad rr;
-	private boolean owned;
+	public boolean owned;
 	private Player owner;
 	/**
 	 * Create the panel.
@@ -94,6 +94,8 @@ public class RailroadSpace extends Space {
 				owned = true;
 				owner = p;
 				p.railroadsOwned++;
+				PlayerUI.update(p);
+				btnNewButton.setVisible(false);
 			}
 		});
 		
@@ -104,16 +106,22 @@ public class RailroadSpace extends Space {
 			if(p.getMoney() <= 0) {
 				PlayerUI.popUp(new PopUpCard(
 						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + owner.getRailroadRent() + ". " + 
-						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."
+						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck." +
+						"You landed on " + name
 						));
 			} else {
 				PlayerUI.popUp(new PopUpCard(
-						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + owner.getRailroadRent() + ". "
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + owner.getRailroadRent() + ". " +
+								"You landed on " + name
 						));
 			}
 		} else if(p.getMoney() >= 2000) {
 			btnNewButton.setVisible(true);
 		}
+	}
+	
+	public Space clone() {
+		return new RailroadSpace(rr);
 	}
 	
 }

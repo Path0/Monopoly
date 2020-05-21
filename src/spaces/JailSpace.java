@@ -105,4 +105,8 @@ public class JailSpace extends Space {
 				"Phew. Glad you're not in there!"
 				));
 	}
+	
+	public Space clone() {
+		return new JailSpace();
+	}
 }

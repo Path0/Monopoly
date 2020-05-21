@@ -25,14 +25,16 @@ public class UtilitySpace extends Space {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JButton btnNewButton;
-	private boolean owned;
+	public boolean owned;
 	private UtilityCard utility;
 	private Player owner;
+	private String[] names;
 
 	/**
 	 * Create the panel.
 	 */
 	public UtilitySpace(String name1, String name2, UtilityCard u) {
+		names = new String[] {name1, name2};
 		utility = u;
 		owner = null;
 		setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -117,6 +119,8 @@ public class UtilitySpace extends Space {
 				owned = true;
 				owner = p;
 				p.utilitiesOwned++;
+				PlayerUI.update(p);
+				btnNewButton.setVisible(false);
 			}
 		});
 		
@@ -129,11 +133,13 @@ public class UtilitySpace extends Space {
 			if(p.getMoney() <= 0) {
 				PlayerUI.popUp(new PopUpCard(
 						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". " + 
-						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck."
+						"Hey, you should think about getting some money. Try mortgaging a property if you are really stuck." + 
+						"You landed on " + this.getName()
 						));
 			} else {
 				PlayerUI.popUp(new PopUpCard(
-						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". "
+						"Well, looks like " + owner.getName() + " owns this property. You owe them $" + rent + ". " +
+								"You landed on " + this.getName()
 						));
 			}
 		} else {
@@ -141,5 +147,13 @@ public class UtilitySpace extends Space {
 				btnNewButton.setVisible(true);
 			}
 		}
+	}
+	
+	public String getName() {
+		return utility.getName();
+	}
+	
+	public Space clone() {
+		return new UtilitySpace(names[0], names[1], utility);
 	}
 }

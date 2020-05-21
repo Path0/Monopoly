@@ -68,9 +68,27 @@ public class GoToJailSpace extends Space {
 	
 	public void land(Player p) {
 		p.setInJail(true);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 		p.setPosition(Board.jailSpace);
 		PlayerUI.popUp(new PopUpCard(
 				"You're in jail! Wait 3 turns or roll doubles to get out, unless you have a \"GET OUT OF JAIL FREE\" card, which will be used on your next turn."
 				));
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
+	}
+	
+	public Space clone() {
+		return new GoToJailSpace();
 	}
 }

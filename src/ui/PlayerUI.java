@@ -7,6 +7,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -16,7 +17,9 @@ import Runner.Main;
 import cards.ChanceCard;
 import cards.CommunityChestCard;
 import logi.Board;
+import logi.Game;
 import logi.Player;
+import spaces.Space;
 import util.PopUpCard;
 
 public class PlayerUI extends JPanel {
@@ -29,6 +32,9 @@ public class PlayerUI extends JPanel {
 	private static JPanel p3Position;
 	private static JPanel p4Position;
 	private static JPanel content;
+	private static JButton rollDice;
+	private static JButton nextPlayerButton;
+	private static Player[] players;
 
 	/**
 	 * Create the panel.
@@ -37,24 +43,24 @@ public class PlayerUI extends JPanel {
 		this.setSize(1600,900);
 		setLayout(null);
 		
-		content = new JPanel();
-		content.setBorder(new LineBorder(new Color(0, 0, 0)));
-		content.setBounds(10, 11, 1580, 878);
+		PlayerUI.content = new JPanel();
+		PlayerUI.content.setBorder(new LineBorder(new Color(0, 0, 0)));
+		PlayerUI.content.setBounds(10, 11, 1580, 878);
 		add(content);
-		content.setLayout(null);
+		PlayerUI.content.setLayout(null);
 		
-		playerName = new JTextField();
-		playerName.setFocusable(false);
-		playerName.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		playerName.setBorder(null);
-		playerName.setBackground(SystemColor.menu);
-		playerName.setEditable(false);
-		playerName.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		playerName.setHorizontalAlignment(SwingConstants.CENTER);
-		playerName.setText("PLAYERNAME");
-		playerName.setBounds(10, 11, 166, 47);
-		content.add(playerName);
-		playerName.setColumns(10);
+		PlayerUI.playerName = new JTextField();
+		PlayerUI.playerName.setFocusable(false);
+		PlayerUI.playerName.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		PlayerUI.playerName.setBorder(null);
+		PlayerUI.playerName.setBackground(SystemColor.menu);
+		PlayerUI.playerName.setEditable(false);
+		PlayerUI.playerName.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		PlayerUI.playerName.setHorizontalAlignment(SwingConstants.CENTER);
+		PlayerUI.playerName.setText("PLAYERNAME");
+		PlayerUI.playerName.setBounds(10, 11, 166, 47);
+		PlayerUI.content.add(playerName);
+		PlayerUI.playerName.setColumns(10);
 		
 		playerMoney = new JTextField();
 		playerMoney.setText("PLAYERMONEY");
@@ -107,10 +113,59 @@ public class PlayerUI extends JPanel {
 		p4Position.setBounds(679, 447, 214, 301);
 		content.add(p4Position);
 		
+		/*
+		rollDice = new JButton("Roll the Dice!");
+		rollDice.setBounds(469, 25, 166, 60);
+		content.add(rollDice);
+		*/
+		
+		nextPlayerButton = new JButton("Next Player");
+		nextPlayerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.game.nextPlayer();
+			}
+		});
+		nextPlayerButton.setBounds(698, 25, 166, 60);
+		content.add(nextPlayerButton);
+		
 		
 	}
 	
-	
+	public static void newTurn(Player p) {
+		update(p);
+		content.repaint();
+		if(p.isInJail()) {
+			int roll = Game.rollDice();
+			if(roll == 12 || roll == 6) {
+				PlayerUI.popUp(new PopUpCard("You rolled a 12 or 6! You are now free from jail."));
+				p.setInJail(false);
+				p.setPosition(11);
+			} else {
+				PlayerUI.popUp(new PopUpCard("You did not roll a 12 or a 6. Try again next turn to see if you will get out of jail!"));
+			}
+		}
+
+		rollDice = new JButton("Roll the Dice!");
+		rollDice.setBounds(469, 25, 166, 60);
+		content.add(rollDice);
+		System.out.println(rollDice);
+		rollDice.setVisible(true);
+		rollDice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int diceRoll = Game.rollDice();
+				popUp(new PopUpCard("You rolled a " + diceRoll + "."));
+				p.move(diceRoll);
+				System.out.println("bruh");
+				content.remove(rollDice);
+				content.repaint();
+				System.out.println(p.getPosition());
+				((Space) Board.board[p.getPosition() - 1]).land(p);
+				System.out.println(p.getPosition());
+				update(p);
+			}
+		});
+		
+	}
 	public static void popUp(PopUpCard j) {
 		popUpPanel.add(j);
 		j.setVisible(true);
@@ -146,7 +201,8 @@ public class PlayerUI extends JPanel {
 	}
 	
 	public static void update(Player p) {
-		playerName.setText(p.getName());
+		System.out.println(playerName);
+		PlayerUI.playerName.setText(p.getName());
 		playerMoney.setText(String.valueOf(p.getMoney()));
 		if(hand != null) {
 			content.remove(hand);
@@ -154,50 +210,78 @@ public class PlayerUI extends JPanel {
 		hand = new Hand(p);
 		hand.setLocation(10, 136);
 		content.add(hand);
-		System.out.println(p.getCards());
 		hand.refresh();
 		/*
 		 * resets each player's position.
 		 */
-		Player[] players = Main.game.getPlayers();
-		if(players.length == 2) {
-			int position = players[0].getPosition();
-			p1Position.add(Board.board[position - 1]);
+		
+		if(getPlayers().length == 2) {
+			
+			
+			p1Position.removeAll();
+			int position = getPlayers()[0].getPosition();
+			Space space = ((Space) Board.board[position - 1]);
+			p1Position.add(space);
 			p1Position.repaint();
 			
-			int position2 = players[1].getPosition();
-			p2Position.add(Board.board[position2 - 1]);
+			p2Position.removeAll();
+			int position2 = getPlayers()[1].getPosition();
+			space = ((Space) Board.board[position2 - 1]);
+			p2Position.add(space);
 			p2Position.repaint();
 		}
-		if(players.length == 3) {
-			int position = players[0].getPosition();
-			p1Position.add(Board.board[position - 1]);
+		if(getPlayers().length == 3) {
+			p1Position.removeAll();
+			int position = getPlayers()[0].getPosition();
+			Space space = ((Space) Board.board[position - 1]);
+			p1Position.add(space);
 			p1Position.repaint();
 			
-			int position2 = players[1].getPosition();
-			p2Position.add(Board.board[position2 - 1]);
+			p2Position.removeAll();
+			int position2 = getPlayers()[1].getPosition();
+			space = ((Space) Board.board[position2 - 1]);
+			p2Position.add(space);
 			p2Position.repaint();
 			
-			int position3 = players[2].getPosition();
-			p3Position.add(Board.board[position3 - 1]);
+			p3Position.removeAll();
+			int position3 = getPlayers()[2].getPosition();
+			space = ((Space) Board.board[position3 - 1]);
+			p3Position.add(space);
 			p3Position.repaint();
 		}
-		if(players.length == 4) {
-			int position = players[0].getPosition();
-			p1Position.add(Board.board[position - 1]);
+		if(getPlayers().length == 4) {
+			p1Position.removeAll();
+			int position = getPlayers()[0].getPosition();
+			Space space = ((Space) Board.board[position - 1]);
+			p1Position.add(space);
 			p1Position.repaint();
 			
-			int position2 = players[1].getPosition();
-			p2Position.add(Board.board[position2 - 1]);
+			p2Position.removeAll();
+			int position2 = getPlayers()[1].getPosition();
+			space = ((Space) Board.board[position2 - 1]);
+			p2Position.add(space);
 			p2Position.repaint();
 			
-			int position3 = players[2].getPosition();
-			p3Position.add(Board.board[position3 - 1]);
+			p3Position.removeAll();
+			int position3 = getPlayers()[2].getPosition();
+			space = ((Space) Board.board[position3 - 1]);
+			p3Position.add(space);
 			p3Position.repaint();
 			
-			int position4 = players[3].getPosition();
-			p4Position.add(Board.board[position4 - 1]);
+			p4Position.removeAll();
+			int position4 = getPlayers()[3].getPosition();
+			space = ((Space) Board.board[position4 - 1]);
+			p4Position.add(space);
 			p4Position.repaint();
+			System.out.println("1:" + position + " 2:" + position2 + " 3:" + position3 + " 4:" + position4);
 		}
+	}
+
+	public static Player[] getPlayers() {
+		return players;
+	}
+
+	public static void setPlayers(Player[] players) {
+		PlayerUI.players = players;
 	}
 }

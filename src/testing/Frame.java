@@ -1,6 +1,6 @@
 package testing;
 
-import java.awt.EventQueue;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,7 +25,9 @@ public class Frame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	
+	
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,6 +39,7 @@ public class Frame extends JFrame {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.

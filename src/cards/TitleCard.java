@@ -17,7 +17,7 @@ import javax.swing.border.LineBorder;
  * @author bruh
  *
  */
-public class TitleCard extends JPanel {
+public class TitleCard extends Card {
 	private String name;
 	private int houses;
 	private int[] rentList;

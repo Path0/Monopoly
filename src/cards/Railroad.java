@@ -12,7 +12,7 @@ import javax.swing.border.LineBorder;
 
 import designs.Train;
 
-public class Railroad extends JPanel {
+public class Railroad extends Card {
 	private String name;
 	private int rent;
 	
@@ -160,6 +160,10 @@ public class Railroad extends JPanel {
 	
 	public void setCardName(String name) {
 		this.name = name;
+	}
+
+	public int getMortgageVal() {
+		return 1000;
 	}
 	
 	

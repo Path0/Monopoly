@@ -71,7 +71,7 @@ public class Board {
 		return amountOfSpaces;
 	}
 	
-	public void addToFreeParking(int money) {
+	public static void addToFreeParking(int money) {
 		((FreeParking)board[20]).addMoney(money);
 	}
 	

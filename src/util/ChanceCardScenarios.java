@@ -2,11 +2,12 @@ package util;
 
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 import Runner.Main;
+import cards.Card;
 import cards.TitleCard;
+import logi.Board;
 import logi.Player;
+import ui.PlayerUI;
 
 public class ChanceCardScenarios {
 
@@ -39,22 +40,32 @@ public class ChanceCardScenarios {
 	}
 	
 	public static void s2(Player p) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		p.move(-3);
+		PlayerUI.update(p);
 	}
 	
 	public static void s3(Player p) {
-		for(Player x : Main.game.getPlayers()) {
+		for(Player x : Main.game.players) {
 			p.payPlayer(x, 500);
 		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s4(Player p) {
 		p.addMoney(500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s5(Player p) {
 		p.subtractMoney(150);
-		Main.game.board.addToFreeParking(150);
+		Board.addToFreeParking(150);
+		PlayerUI.update(p);
 	}
 	
 	public static void s6(Player p) {
@@ -63,6 +74,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s7(Player p) {
@@ -71,6 +89,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s8(Player p) {
@@ -79,6 +104,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s9(Player p) {
@@ -87,6 +119,13 @@ public class ChanceCardScenarios {
 			p.passGo();
 		}
 		p.setPosition(pos);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s10(Player p) {
@@ -109,6 +148,13 @@ public class ChanceCardScenarios {
 		} else if(playerPos < pos1) {
 			p.setPosition(pos1);
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s11(Player p) {
@@ -126,26 +172,36 @@ public class ChanceCardScenarios {
 		} else if(playerPos < pos1) {
 			p.setPosition(pos1);
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PlayerUI.update(p);
 	}
 	
 	public static void s12(Player p) {
 		p.setInJail(true);
 		p.setPosition(11);
+		PlayerUI.update(p);
 	}
 	
 	public static void s13(Player p) {
 		p.passGo();
 		p.setPosition(1);
+		PlayerUI.update(p);
 	}
 	
 	public static void s14(Player p) {
 		p.addMoney(1500);
+		PlayerUI.update(p);
 	}
 	
 	public static void s15(Player p) {
-		ArrayList<JPanel> cards = p.getCards();
+		ArrayList<Card> cards = p.getCards();
 		int totalToPay = 0;
-		for(JPanel card : cards) {
+		for(Card card : cards) {
 			TitleCard c;
 			if(card instanceof TitleCard) {
 				c = (TitleCard) card;
@@ -159,7 +215,8 @@ public class ChanceCardScenarios {
 			
 		}
 		p.subtractMoney(totalToPay);
-		Main.game.board.addToFreeParking(totalToPay);
+		Board.addToFreeParking(totalToPay);
+		PlayerUI.update(p);
 	}
 
 }

@@ -66,4 +66,8 @@ public class GOSpace extends Space {
 	public void land(Player p) {
 		p.passGo();
 	}
+	
+	public Space clone() {
+		return new GOSpace();
+	}
 }
